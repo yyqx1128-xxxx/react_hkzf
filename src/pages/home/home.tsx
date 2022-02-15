@@ -1,5 +1,6 @@
-import React, { Component, PureComponent } from "react";
+import React, { PureComponent } from "react";
 import TabBar from "../../components/tab-bar/tab-bar";
+// import TabBar from "@/components/tab-bar/tab-bar";
 import "./home.less";
 import { Grid, Swiper } from "antd-mobile";
 import { getNews, getRentHouse, getSwiperData, getcityList } from "../../api";
@@ -12,7 +13,6 @@ export default class Home extends PureComponent {
     newsList: [],
   };
   componentDidMount() {
-    console.log(this.props,'home')
     getSwiperData().then((res: any) => {
       this.setState({
         swiperList: res.body,
@@ -29,13 +29,12 @@ export default class Home extends PureComponent {
       });
     });
   }
-  goPage(path: string) {
-    console.log(path);
-    // this.props.history.push(path)
+  goPage(path: string,prop:any) {
+    prop.history.push(path)
   }
 
   render() {
-    const a =1
+    let prop = this.props
     const { swiperList, rentHouseList, newsList } = this.state;
     const navImgList = [
       {
@@ -76,7 +75,7 @@ export default class Home extends PureComponent {
               return (
                 <div
                   className="nav-second-item"
-                  onClick={() => this.goPage(item.path)}
+                  onClick={() => this.goPage(item.path,prop)}
                   key={index}
                 >
                   <img src={item.img} alt="" />
@@ -91,7 +90,7 @@ export default class Home extends PureComponent {
             <span>租房小组</span>
             <span
               onClick={() => {
-                this.goPage("");
+                this.goPage("/my",prop);
               }}
             >
               更多
