@@ -1,19 +1,27 @@
 import React, { Component } from "react";
 import TabBar from "../../components/tab-bar/tab-bar";
-import './my.less'
+import NavBar from "../../components/nav-bar/nav-bar";
+import "./my.less";
 
 export default class My extends Component {
-  state = {
-  };
-  goPage(){
-  //  this.props.history.push('/home')
+  state = {};
+  goPage() {
+    //  this.props.history.push('/home')
   }
   render() {
-    console.log(this.props,'my')
-    return <div>
-      <h2 onClick={()=>this.goPage}>我的</h2>
-      <TabBar children='/my'></TabBar>
-    </div>
+    const navprpos = {
+      title: "我的",
+      lefticon: require("../../assets/back-icon.png").default,
+      leftshow: true,
+      prop: this.props,
+    };
+    return (
+      <div className="my-div">
+        <div className="my-nav">
+          <NavBar children={navprpos}></NavBar>
+        </div>
+        <TabBar children="/my"></TabBar>
+      </div>
+    );
   }
 }
-

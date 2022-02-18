@@ -1,0 +1,44 @@
+.nav-div {
+  //   display: flex;
+  //   align-items: center;
+  height: 44px;
+  line-height: 44px;
+  position: relative;
+  top: 0;
+  width: 100vw;
+  z-index: 9;
+  // padding: 0 16px;
+  .nav-title,
+  .return-btn,
+  .nav-right {
+    height: 25px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333333;
+    line-height: 25px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .return-btn {
+    left: 16px;
+    z-index: 2;
+    img {
+      vertical-align: middle;
+      width: 16px;
+      height: 16px;
+    }
+  }
+  .nav-title {
+    height: 25px;
+    line-height: 25px;
+    white-space: nowrap;
+    left: 0;
+    text-align: center;
+    z-index: 1;
+    width: 100%;
+  }
+  .nav-right{
+    right: 16px;
+  }
+}
