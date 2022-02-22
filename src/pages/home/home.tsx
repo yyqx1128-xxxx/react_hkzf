@@ -3,7 +3,7 @@ import TabBar from "../../components/tab-bar/tab-bar";
 // import TabBar from "@/components/tab-bar/tab-bar";
 import "./home.less";
 import { Grid, Swiper, Input } from "antd-mobile";
-import { getNews, getRentHouse, getSwiperData, getcityList, getcityInfo } from "../../api";
+import { getNews, getRentHouse, getSwiperData, getcityInfo } from "../../api";
 import { AutoComplete } from "react-bmapgl";
 import axios from "axios";
 
@@ -53,14 +53,14 @@ export default class Home extends PureComponent {
   getLocationCity=(result:any)=>{
     getcityInfo({name:result.name}).then((res:any) => {
       this.setState({
-        curCityName:res.body.label
+        curCityName:res.body.label ? res.body.label: ''
       })
 
     })
   }
   goPage(path: string, prop: any,params?:any) {
     if(params){
-      prop.history.push(path+`/${params.curCityName}`)
+      prop.history.push(path+`/?cityname=${params.curCityName}`)
     }else {
       prop.history.push(path);
     }
@@ -74,22 +74,22 @@ export default class Home extends PureComponent {
     const { swiperList, rentHouseList, newsList, curCityName } = this.state;
     const navImgList = [
       {
-        img: require("../../assets/nav-1.png").default,
+        img: require("../../assets/images/nav-1.png").default,
         text: "整租",
         path: "/renthouse",
       },
       {
-        img: require("../../assets/nav-2.png").default,
+        img: require("../../assets/images/nav-2.png").default,
         text: "合租",
         path: "/renthouse",
       },
       {
-        img: require("../../assets/nav-3.png").default,
+        img: require("../../assets/images/nav-3.png").default,
         text: "地图找房",
         path: "/renthouse",
       },
       {
-        img: require("../../assets/nav-4.png").default,
+        img: require("../../assets/images/nav-4.png").default,
         text: "去出租",
         path: "/renthouse",
       },
@@ -110,10 +110,10 @@ export default class Home extends PureComponent {
             <div className="search-left">
               <div className="search-left-select" onClick={()=>this.goPage('/citylist',prop,{curCityName})}>
                 <span>{curCityName}</span>
-                <img src={require("../../assets/down-select.png").default} alt=""/>
+                <img src={require("../../assets/images/down-select.png").default} alt=""/>
               </div>
               <div className="search-left-input">
-                <img src={require("../../assets/search-input.png").default} alt="" />
+                <img src={require("../../assets/images/search-input.png").default} alt="" />
                 <div>
                 <input id="ac" placeholder='请输入小区或地址'/>
                 <AutoComplete
@@ -130,7 +130,7 @@ export default class Home extends PureComponent {
             </div>
             <div className="search-right" onClick={() => this.goPage('/map', prop)}>
             {/* <div className="search-right" onClick={() => this.getLocation()}> */}
-              <img src={require("../../assets/location.png").default} alt="" />
+              <img src={require("../../assets/images/location.png").default} alt="" />
             </div>
           </div>
         </div>

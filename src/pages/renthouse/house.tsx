@@ -7,7 +7,7 @@ export default class RentHouse extends Component {
   render() {
     const navprpos = {
       title: "租房",
-      lefticon: require("../../assets/back-icon.png").default,
+      lefticon: require("../../assets/images/back-icon.png").default,
       leftshow: true,
       prop: this.props,
     };

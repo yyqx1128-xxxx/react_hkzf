@@ -16,20 +16,20 @@ import MapPage from "./pages/map/map";
 function App(this: any) {
   return (
     <div className="App">
-      <Switch>
-        {/* <Route path="/home" component={Home}></Route> */}
-        <Route path="/home"render={props => (<Home {...props}></Home>)}></Route>
-        <Route path="/renthouse" component={RentHouse}></Route>
-        <Route path="/news" component={News}></Route>
-        <Route path="/my" component={My}></Route>
-        <Route path="/citylist" component={CityList}></Route>
-        <Route path="/map" component={MapPage}></Route>
-        {/* <Route path="/my" render={(props)=>(<My children={props}/>)}></Route> */}
-        {/* 默认路由---Redirect用于实现路由重定向，to属性指定要跳转的路由 */}
-        <Route path="/" exact render={() => <Redirect to="/home"></Redirect>} />
-      </Switch>
-    </div>
+        <Switch>
+          {/* <Route path="/home" component={Home}></Route> */}
+          <Route path="/home"render={props => (<Home {...props}></Home>)}></Route>
+          <Route path="/renthouse" component={RentHouse}></Route>
+          <Route path="/news" component={News}></Route>
+          <Route path="/my" component={My}></Route>
+          <Route path="/citylist" component={CityList}></Route>
+          <Route path="/map" component={MapPage}></Route>
+          {/* <Route path="/my" render={(props)=>(<My children={props}/>)}></Route> */}
+          {/* 默认路由---Redirect用于实现路由重定向，to属性指定要跳转的路由 */}
+          <Route path="/" exact render={() => <Redirect to="/home"></Redirect>} />
+        </Switch>
+      </div>
   );
 }
 
-export default withRouter(App);
+export default App;

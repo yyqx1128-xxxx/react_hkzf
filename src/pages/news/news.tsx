@@ -7,7 +7,7 @@ export default class News extends Component {
   render() {
     const navprpos = {
       title: "资讯页面",
-      lefticon: require("../../assets/back-icon.png").default,
+      lefticon: require("../../assets/images/back-icon.png").default,
       leftshow: true,
       prop: this.props,
     };

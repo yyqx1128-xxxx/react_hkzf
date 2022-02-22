@@ -11,7 +11,7 @@ export default class My extends Component {
   render() {
     const navprpos = {
       title: "我的",
-      lefticon: require("../../assets/back-icon.png").default,
+      lefticon: require("../../assets/images/back-icon.png").default,
       leftshow: true,
       prop: this.props,
     };

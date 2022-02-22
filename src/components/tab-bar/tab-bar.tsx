@@ -6,10 +6,10 @@ import './tab-bar.less'
 export default class TabBar extends Component {
   state = {
     tabs: [
-      { tabName: "首页", id: "index", url:'/home', img: require('../../assets/home.png').default, imgactive:require('../../assets/home-active.png').default },
-      { tabName: "找房", id: "ranking", url:'/renthouse', img:require('../../assets/search.png').default, imgactive:require('../../assets/search-active.png').default },
-      { tabName: "资讯", id: "task", url:'/news', img:require('../../assets/news.png').default, imgactive:require('../../assets/news-active.png').default  },
-      { tabName: "我的", id: "mine", url:'/my', img:require('../../assets/my.png').default, imgactive:require('../../assets/my-active.png').default },
+      { tabName: "首页", id: "index", url:'/home', img: require('../../assets/images/home.png').default, imgactive:require('../../assets/images/home-active.png').default },
+      { tabName: "找房", id: "ranking", url:'/renthouse', img:require('../../assets/images/search.png').default, imgactive:require('../../assets/images/search-active.png').default },
+      { tabName: "资讯", id: "task", url:'/news', img:require('../../assets/images/news.png').default, imgactive:require('../../assets/images/news-active.png').default  },
+      { tabName: "我的", id: "mine", url:'/my', img:require('../../assets/images/my.png').default, imgactive:require('../../assets/images/my-active.png').default },
     ],
     current:0,
   };

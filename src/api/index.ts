@@ -16,7 +16,7 @@ let getNews = (params: any = {}) => {
 let getcityList = (params: any = {}) => {
   return http.get("http://localhost:8080/area/city", params);
 };
-//获取城市列表
+//获取城市信息
 let getcityInfo = (params: any = {}) => {
   return http.get("http://localhost:8080/area/info", params);
 };
