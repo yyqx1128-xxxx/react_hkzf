@@ -4,9 +4,17 @@ import NavBar from "../../components/nav-bar/nav-bar";
 import "./my.less";
 
 export default class My extends Component {
-  state = {};
-  goPage() {
-    //  this.props.history.push('/home')
+  state = {
+    prop:Object(this.props)
+  };
+  goPage(path: string,params?:any) {
+    let query:any ={}
+    if(params){
+      query = {cityName:params.curCityName}
+      this.state.prop.history.push(path,query)
+    }else {
+      this.state.prop.history.push(path);
+    }
   }
   render() {
     const navprpos = {

@@ -1,6 +1,5 @@
 
 import { Component } from "react";
-import { Link } from "react-router-dom";
 import './nav-bar.less'
 
 export default class NavBar extends Component {

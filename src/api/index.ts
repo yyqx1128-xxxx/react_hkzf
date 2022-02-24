@@ -20,6 +20,10 @@ let getcityList = (params: any = {}) => {
 let getcityInfo = (params: any = {}) => {
   return http.get("http://localhost:8080/area/info", params);
 };
+//获取热门城市
+let getcityHot = (params: any = {}) => {
+  return http.get("http://localhost:8080/area/hot");
+};
 
 export {
   getSwiperData,
@@ -27,4 +31,5 @@ export {
   getNews,
   getcityList,
   getcityInfo,
+  getcityHot,
 };

@@ -1,11 +1,11 @@
-import React, { PureComponent } from "react";
+import { PureComponent } from "react";
 import TabBar from "../../components/tab-bar/tab-bar";
 // import TabBar from "@/components/tab-bar/tab-bar";
 import "./home.less";
-import { Grid, Swiper, Input } from "antd-mobile";
-import { getNews, getRentHouse, getSwiperData, getcityInfo } from "../../api";
+import { getNews, getRentHouse, getSwiperData } from "../../api";
 import { AutoComplete } from "react-bmapgl";
-import axios from "axios";
+import { Grid, Swiper } from "antd-mobile";
+import commonfunction from "../../utils";
 
 export default class Home extends PureComponent {
   state = {
@@ -14,6 +14,7 @@ export default class Home extends PureComponent {
     rentHouseList: [],
     newsList: [],
     curCityName:'',//当前城市名称
+    prop:Object(this.props)
   };
   componentDidMount() {
     //获取轮播图
@@ -34,8 +35,10 @@ export default class Home extends PureComponent {
         newsList: res.body,
       });
     });
-    const myCity =new (window as any).BMapGL.LocalCity();
-    myCity.get(this.getLocationCity); 
+
+    this.setState({
+      curCityName:  commonfunction.getcurCity().label
+    })
   }
   //获取地理位置信息--手机优先使用GPS，笔记本等最准确的定位是wife(会因为网络环境经纬度有偏差)
   //h5的地理位置API 通过navigator.geolocation.getCurrentPosition只能获取经纬度信息
@@ -49,20 +52,14 @@ export default class Home extends PureComponent {
       console.log("当前不支持获取地理位置");
     }
   }
-  //获取当前定位城市
-  getLocationCity=(result:any)=>{
-    getcityInfo({name:result.name}).then((res:any) => {
-      this.setState({
-        curCityName:res.body.label ? res.body.label: ''
-      })
-
-    })
-  }
-  goPage(path: string, prop: any,params?:any) {
+ 
+  goPage(path: string,params?:any) {
+    let query:any ={}
     if(params){
-      prop.history.push(path+`/?cityname=${params.curCityName}`)
+      query = {cityName:params.curCityName}
+      this.state.prop.history.push(path,query)
     }else {
-      prop.history.push(path);
+      this.state.prop.history.push(path);
     }
   }
   searchInput(val:string) {
@@ -70,7 +67,6 @@ export default class Home extends PureComponent {
   }
 
   render() {
-    let prop = this.props;
     const { swiperList, rentHouseList, newsList, curCityName } = this.state;
     const navImgList = [
       {
@@ -108,7 +104,7 @@ export default class Home extends PureComponent {
           </Swiper>
           <div className="home-nav-search">
             <div className="search-left">
-              <div className="search-left-select" onClick={()=>this.goPage('/citylist',prop,{curCityName})}>
+              <div className="search-left-select" onClick={()=>this.goPage('/citylist',{curCityName})}>
                 <span>{curCityName}</span>
                 <img src={require("../../assets/images/down-select.png").default} alt=""/>
               </div>
@@ -128,7 +124,7 @@ export default class Home extends PureComponent {
                 /> */}
               </div>
             </div>
-            <div className="search-right" onClick={() => this.goPage('/map', prop)}>
+            <div className="search-right" onClick={() => this.goPage('/map')}>
             {/* <div className="search-right" onClick={() => this.getLocation()}> */}
               <img src={require("../../assets/images/location.png").default} alt="" />
             </div>
@@ -139,7 +135,7 @@ export default class Home extends PureComponent {
             return (
               <div
                 className="nav-second-item"
-                onClick={() => this.goPage(item.path, prop)}
+                onClick={() => this.goPage(item.path)}
                 key={index}
               >
                 <img src={item.img} alt="" />
@@ -154,7 +150,7 @@ export default class Home extends PureComponent {
             <span>租房小组</span>
             <span
               onClick={() => {
-                this.goPage("/my", prop);
+                this.goPage("/my");
               }}
             >
               更多

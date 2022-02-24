@@ -12,10 +12,12 @@ import My from "./pages/my/my";
 import RentHouse from "./pages/renthouse/house";
 import CityList from "./pages/cityList/cityList";
 import MapPage from "./pages/map/map";
+import { Suspense } from "react";
 
 function App(this: any) {
   return (
     <div className="App">
+      <Suspense fallback={null}>
         <Switch>
           {/* <Route path="/home" component={Home}></Route> */}
           <Route path="/home"render={props => (<Home {...props}></Home>)}></Route>
@@ -28,8 +30,9 @@ function App(this: any) {
           {/* 默认路由---Redirect用于实现路由重定向，to属性指定要跳转的路由 */}
           <Route path="/" exact render={() => <Redirect to="/home"></Redirect>} />
         </Switch>
+      </Suspense>
       </div>
   );
 }
 
-export default App;
+export default withRouter(App);
